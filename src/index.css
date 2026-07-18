@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink text-cream font-sans antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    @apply bg-gold/30 text-cream;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .kicker {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] text-gold;
+  }
+
+  .heading {
+    @apply font-display font-semibold leading-[1.05] text-cream;
+  }
+
+  /* Texte doré dégradé animé */
+  .text-gold-shine {
+    background: linear-gradient(90deg, #C9A24B 0%, #E7C978 25%, #C9A24B 50%, #E7C978 75%, #C9A24B 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @apply animate-shine;
+  }
+
+  /* Bouton principal doré */
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink
+           transition-all duration-300 hover:bg-goldsoft hover:shadow-[0_0_30px_-5px_rgba(201,162,75,0.6)] active:scale-95;
+  }
+
+  /* Bouton secondaire (contour) */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-stone px-6 py-3 text-sm font-semibold text-cream
+           transition-all duration-300 hover:border-gold hover:text-gold active:scale-95;
+  }
+
+  /* Carte en verre */
+  .glass {
+    @apply rounded-3xl border border-white/5 bg-charcoal/70 backdrop-blur-sm;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full;
+  }
+}
+
+/* Grain / halo décoratif */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0B0D;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a30;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A24B;
+}
