@@ -1,25 +1,23 @@
-// Fond aurora : dégradés flous animés, fixés derrière tout le contenu.
-export default function AuroraBackground() {
+// Fond moderne et net : noir profond + un très léger halo statique en haut.
+// Pas de flou bombé, pas d'animation — propre, style Linear / Vercel.
+export default function Background() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      <div className="absolute -left-[15%] top-[-10%] h-[45vmax] w-[45vmax] animate-aurora rounded-full bg-gold/20 blur-[120px]" />
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-ink">
+      {/* halo doré discret et statique, en haut */}
       <div
-        className="absolute right-[-10%] top-[20%] h-[40vmax] w-[40vmax] animate-aurora rounded-full bg-goldsoft/10 blur-[120px]"
-        style={{ animationDelay: '-6s' }}
+        className="absolute inset-x-0 top-0 h-[420px]"
+        style={{
+          background:
+            'radial-gradient(60% 100% at 50% 0%, rgba(201,162,75,0.10) 0%, rgba(201,162,75,0.04) 35%, transparent 70%)',
+        }}
       />
+      {/* grille fine très discrète */}
       <div
-        className="absolute bottom-[-15%] left-[25%] h-[38vmax] w-[38vmax] animate-aurora rounded-full bg-[#5b3d1a]/25 blur-[120px]"
-        style={{ animationDelay: '-11s' }}
-      />
-      {/* voile sombre pour garder le contraste du texte */}
-      <div className="absolute inset-0 bg-ink/70" />
-      {/* grille fine */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage:
             'linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)',
-          backgroundSize: '70px 70px',
+          backgroundSize: '72px 72px',
         }}
       />
     </div>

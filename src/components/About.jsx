@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { useLang } from '../context/LangContext'
 import { SectionHeader } from './Section'
-import SkillsOrbit from './fx/SkillsOrbit'
+import SkillsBento from './fx/SkillsBento'
 
 export default function About() {
   const { t } = useLang()
@@ -36,8 +36,8 @@ export default function About() {
           </ul>
         </div>
 
-        {/* Compétences en orbite */}
-        <SkillsOrbit />
+        {/* Compétences — grille bento */}
+        <SkillsBento />
       </div>
     </section>
   )

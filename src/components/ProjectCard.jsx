@@ -1,21 +1,21 @@
 import { useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowUpRight, Github, Globe, MonitorSmartphone } from 'lucide-react'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useLang } from '../context/LangContext'
 
 export default function ProjectCard({ project, index }) {
   const { t, lang } = useLang()
   const { title, tags, description, image, liveUrl, githubUrl, accent, category, featured } = project
 
+  // Inclinaison 3D légère (~4°) — chic sans effet « bombé »
   const ref = useRef(null)
   const mx = useMotionValue(0.5)
   const my = useMotionValue(0.5)
-  const rotateX = useSpring(useTransform(my, [0, 1], [6, -6]), { stiffness: 200, damping: 20 })
-  const rotateY = useSpring(useTransform(mx, [0, 1], [-6, 6]), { stiffness: 200, damping: 20 })
+  const rotateX = useSpring(useTransform(my, [0, 1], [4, -4]), { stiffness: 150, damping: 18 })
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-4, 4]), { stiffness: 150, damping: 18 })
 
   const handleMove = (e) => {
-    const el = ref.current
-    if (!el) return
+    const el = e.currentTarget
     const r = el.getBoundingClientRect()
     const px = (e.clientX - r.left) / r.width
     const py = (e.clientY - r.top) / r.height
@@ -34,11 +34,12 @@ export default function ProjectCard({ project, index }) {
       ref={ref}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      style={{ rotateX, rotateY, transformPerspective: 1000 }}
-      initial={{ opacity: 0, y: 40 }}
+      style={{ rotateX, rotateY, transformPerspective: 1200 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -4 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, delay: (index % 2) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay: (index % 2) * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className={`spotlight group glass relative flex flex-col overflow-hidden transition-colors duration-300 hover:border-gold/30 ${
         featured ? 'md:col-span-2' : ''
       }`}

@@ -29,7 +29,6 @@ export default function App() {
       <CustomCursor />
       <ScrollProgress />
       <AuroraBackground />
-      <div className="grain" aria-hidden />
 
       <div className="relative z-10">
         <Navbar />
