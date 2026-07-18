@@ -1,39 +1,43 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 
 // Compteur animé : anime la partie numérique de `value` (ex "8+", "100%", "7j/7").
 export default function Counter({ value, className = '' }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
-  const [display, setDisplay] = useState('0')
 
-  const match = String(value).match(/^(\d+)(.*)$/)
-  const target = match ? parseInt(match[1], 10) : 0
-  const suffix = match ? match[2] : String(value)
+  // Calculé une seule fois par valeur (références stables -> pas de boucle).
+  const { target, suffix, isNumeric } = useMemo(() => {
+    const m = String(value).match(/^(\d+)(.*)$/)
+    return {
+      target: m ? parseInt(m[1], 10) : 0,
+      suffix: m ? m[2] : String(value),
+      isNumeric: !!m,
+    }
+  }, [value])
+
+  const [display, setDisplay] = useState(isNumeric ? 0 : value)
 
   useEffect(() => {
-    if (!inView) return
-    if (!match) {
-      setDisplay(String(value))
-      return
-    }
+    if (!inView || !isNumeric) return
     let start
+    let raf
     const duration = 1300
     const step = (t) => {
       if (start === undefined) start = t
       const p = Math.min((t - start) / duration, 1)
       const eased = 1 - Math.pow(1 - p, 3)
-      setDisplay(String(Math.round(eased * target)))
-      if (p < 1) requestAnimationFrame(step)
+      setDisplay(Math.round(eased * target))
+      if (p < 1) raf = requestAnimationFrame(step)
     }
-    const raf = requestAnimationFrame(step)
+    raf = requestAnimationFrame(step)
     return () => cancelAnimationFrame(raf)
-  }, [inView, target, value, match])
+  }, [inView, isNumeric, target])
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} className={`tabular-nums ${className}`}>
       {display}
-      {suffix}
+      {isNumeric ? suffix : ''}
     </span>
   )
 }
