@@ -24,7 +24,12 @@ export default function Services() {
                 whileInView="show"
                 viewport={{ once: true, margin: '-60px' }}
                 custom={i}
-                className="group glass relative overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30"
+                onMouseMove={(e) => {
+                  const r = e.currentTarget.getBoundingClientRect()
+                  e.currentTarget.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`)
+                  e.currentTarget.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`)
+                }}
+                className="spotlight group glass relative overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30"
               >
                 <div className="grid h-12 w-12 place-items-center rounded-2xl bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-ink">
                   <Icon size={22} />
