@@ -43,19 +43,16 @@ export default function About() {
           transition={{ duration: 0.7 }}
           className="relative"
         >
-          <div className="glass aspect-square overflow-hidden p-8">
-            <div className="grid h-full grid-cols-2 gap-4">
-              {['React', 'Tailwind', 'Vite', 'Python', 'Supabase', 'PyQt5', 'SQLite', 'Figma'].slice(0, 6).map(
-                (tech, i) => (
-                  <div
-                    key={tech}
-                    className="flex items-center justify-center rounded-2xl border border-white/5 bg-ink/60 text-sm font-medium text-cream/80 transition-colors hover:border-gold/40 hover:text-gold"
-                    style={{ animationDelay: `${i * 0.3}s` }}
-                  >
-                    {tech}
-                  </div>
-                ),
-              )}
+          <div className="glass p-5 sm:p-8">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {['React', 'Tailwind', 'Vite', 'Python', 'Supabase', 'PyQt5'].map((tech) => (
+                <div
+                  key={tech}
+                  className="flex min-h-[76px] items-center justify-center rounded-2xl border border-white/5 bg-ink/60 text-sm font-medium text-cream/80 transition-colors hover:border-gold/40 hover:text-gold sm:min-h-[104px]"
+                >
+                  {tech}
+                </div>
+              ))}
             </div>
           </div>
           <div className="glow -z-10 left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 bg-gold/10" />
