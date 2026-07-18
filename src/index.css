@@ -136,6 +136,14 @@
   z-index: 0;
 }
 
+/* Orbite des compétences */
+@keyframes orbit-cw {
+  to { transform: rotate(360deg); }
+}
+@keyframes orbit-ccw {
+  to { transform: rotate(-360deg); }
+}
+
 /* Grain animé plein écran */
 .grain {
   position: fixed;

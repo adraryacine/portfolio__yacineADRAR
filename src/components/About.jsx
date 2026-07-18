@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { useLang } from '../context/LangContext'
 import { SectionHeader } from './Section'
+import SkillsOrbit from './fx/SkillsOrbit'
 
 export default function About() {
   const { t } = useLang()
@@ -35,28 +36,8 @@ export default function About() {
           </ul>
         </div>
 
-        {/* Visuel décoratif */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative"
-        >
-          <div className="glass p-5 sm:p-8">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              {['React', 'Tailwind', 'Vite', 'Python', 'Supabase', 'PyQt5'].map((tech) => (
-                <div
-                  key={tech}
-                  className="flex min-h-[76px] items-center justify-center rounded-2xl border border-white/5 bg-ink/60 text-sm font-medium text-cream/80 transition-colors hover:border-gold/40 hover:text-gold sm:min-h-[104px]"
-                >
-                  {tech}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="glow -z-10 left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 bg-gold/10" />
-        </motion.div>
+        {/* Compétences en orbite */}
+        <SkillsOrbit />
       </div>
     </section>
   )
