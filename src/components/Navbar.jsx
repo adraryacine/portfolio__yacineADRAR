@@ -30,10 +30,8 @@ export default function Navbar() {
     >
       <nav className="container-x flex h-16 items-center justify-between md:h-20">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-gold text-ink">
-            {siteConfig.name.charAt(0)}
-          </span>
+        <a href="#home" className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight">
+          <img src="/logo.svg" alt="Yacine" className="h-9 w-9" />
           <span className="text-cream">{siteConfig.name}</span>
         </a>
 

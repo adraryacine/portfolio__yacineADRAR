@@ -1,5 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="16" fill="#0B0B0D"/>
-  <text x="50%" y="50%" dy="0.35em" text-anchor="middle"
-        font-family="Georgia, 'Playfair Display', serif" font-size="38" font-weight="700" fill="#C9A24B">Y</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Yacine">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F0DDA0"/>
+      <stop offset="1" stop-color="#B8892F"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F24A4A"/>
+      <stop offset="1" stop-color="#B00606"/>
+    </linearGradient>
+    <clipPath id="fan"><circle cx="256" cy="212" r="150"/></clipPath>
+  </defs>
+
+  <rect x="12" y="12" width="488" height="488" rx="120" fill="#0B0B0D" stroke="url(#gold)" stroke-width="10"/>
+
+  <path d="M 231 305 L 214 428 Q 213 442 227 442 L 285 442 Q 299 442 298 428 L 281 305 Z"
+        fill="#F4EFE6" stroke="url(#gold)" stroke-width="11" stroke-linejoin="round"/>
+
+  <g clip-path="url(#fan)">
+    <rect x="0" y="0" width="512" height="512" fill="#F4EFE6"/>
+    <rect x="0" y="0" width="512" height="205" fill="url(#red)"/>
+  </g>
+
+  <circle cx="256" cy="212" r="150" fill="none" stroke="url(#gold)" stroke-width="13"/>
 </svg>

@@ -18,10 +18,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/5 bg-ink">
       <div className="container-x flex flex-col items-center gap-6 py-10 sm:flex-row sm:justify-between">
-        <div className="flex items-center gap-2 font-display text-lg font-bold">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-gold text-ink">
-            {siteConfig.name.charAt(0)}
-          </span>
+        <div className="flex items-center gap-2.5 font-display text-lg font-bold">
+          <img src="/logo.svg" alt="Yacine" className="h-9 w-9" />
           <span className="text-cream">{siteConfig.fullName}</span>
         </div>
 
