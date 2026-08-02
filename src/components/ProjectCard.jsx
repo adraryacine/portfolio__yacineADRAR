@@ -5,7 +5,8 @@ import { useLang } from '../context/LangContext'
 
 export default function ProjectCard({ project, index }) {
   const { t, lang } = useLang()
-  const { title, tags, description, image, liveUrl, githubUrl, accent, category, featured } = project
+  const { title, tags, description, image, imageFit, liveUrl, githubUrl, accent, category, featured } = project
+  const isContain = imageFit === 'contain'
 
   // Inclinaison 3D légère (~4°) — chic sans effet « bombé »
   const ref = useRef(null)
@@ -47,12 +48,26 @@ export default function ProjectCard({ project, index }) {
       {/* Aperçu (image ou dégradé auto) */}
       <div className={`relative overflow-hidden ${featured ? 'aspect-[16/8]' : 'aspect-[16/10]'}`}>
         {image ? (
-          <img
-            src={image}
-            alt={title}
-            loading="lazy"
-            className="h-full w-full scale-[1.02] object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
-          />
+          isContain ? (
+            <div
+              className="flex h-full w-full items-center justify-center p-8"
+              style={{ background: `radial-gradient(120% 120% at 30% 20%, ${accent}22 0%, #101014 60%)` }}
+            >
+              <img
+                src={image}
+                alt={title}
+                loading="lazy"
+                className="max-h-full max-w-[70%] object-contain transition-transform duration-[900ms] ease-out group-hover:scale-105"
+              />
+            </div>
+          ) : (
+            <img
+              src={image}
+              alt={title}
+              loading="lazy"
+              className="h-full w-full scale-[1.02] object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
+            />
+          )
         ) : (
           <div
             className="flex h-full w-full items-center justify-center"
